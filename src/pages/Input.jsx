@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Input() {
@@ -6,6 +6,10 @@ export default function Input() {
 
   const handleNavigation = () => {
     navigate("/preferences");
+    //  const storedTDEE = localStorage.getItem("tdee");
+    //  const storedMacros = JSON.parse(localStorage.getItem("macros"));
+    // console.log(storedTDEE);
+    // console.log(storedMacros.toFixed(0));
   };
 
   const [age, setAge] = useState(0);
@@ -15,6 +19,13 @@ export default function Input() {
   const [activityLevel, setActivityLevel] = useState("sedentary");
   const [target, setTarget] = useState("maintain");
   const [tdee, setTDEE] = useState(null);
+
+  useEffect(() => {
+    if (tdee) {
+      localStorage.setItem("tdee", tdee.toFixed(0));
+      localStorage.setItem("macros", JSON.stringify(calculateMacros()));
+    }
+  }, [tdee, target]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -71,7 +82,7 @@ export default function Input() {
   };
 
   return (
-    <div>
+    <div className="p-6">
       {tdee < 800 && (
         <h1 className="py-6 text-center text-2xl">
           Give us some details about yourself:
@@ -181,12 +192,10 @@ export default function Input() {
         {tdee >= 800 && (
           <div className="border border-base-200 p-6 text-center">
             <h2 className="my-12 text-xl">
-              Your need {tdee.toFixed(0)}kcal every day
+              Your need {tdee.toFixed(0)}kcal every day !
             </h2>
             <div>
-              <p className="mb-6">
-                Perfect daily Macronutrient Goals for your needs:
-              </p>
+              <p className="mb-6">Perfect daily macro for you : </p>
               <ul>
                 <li>Protein - {calculateMacros().protein.toFixed(0)}g</li>
                 <li>Carbs - {calculateMacros().carbs.toFixed(0)}g</li>

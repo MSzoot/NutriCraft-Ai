@@ -9,7 +9,7 @@ export default function Home() {
 
   return (
     <div className="text-center">
-      <p className="py-6">
+      <p className="p-6">
         Fuel your desires, shape your body – Let AI tailor your tasty diet for
         today
       </p>
