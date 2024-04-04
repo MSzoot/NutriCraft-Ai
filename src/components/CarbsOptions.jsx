@@ -88,7 +88,6 @@ const CarbsOptions = {
     "Green Peas",
     "Soybeans",
     "Edamame",
-    "Lima Beans",
     "Split Peas",
     "Bread (Whole Wheat)",
     "Bread (Multigrain)",
