@@ -28,7 +28,7 @@ export default function Carbs() {
   };
 
   const handleNextPage = () => {
-    navigate("/next-page");
+    navigate("/fats");
   };
 
   return (

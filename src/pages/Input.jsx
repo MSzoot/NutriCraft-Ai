@@ -71,9 +71,10 @@ export default function Input() {
       fatRatio = 20;
     }
 
-    const protein = (tdee * (proteinRatio / 100)) / 4;
-    const carbs = (tdee * (carbsRatio / 100)) / 4;
-    const fat = (tdee * (fatRatio / 100)) / 9;
+    const protein = tdee * (proteinRatio / 100 / 4);
+    const carbs = tdee * (carbsRatio / 100 / 4);
+    const fat = tdee * (fatRatio / 100 / 9);
+
     return { protein, carbs, fat };
   };
 

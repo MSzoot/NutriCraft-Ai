@@ -1,5 +1,5 @@
 // data.js
-const proteinOptions = {
+const CarbsOptions = {
   meat: [
     "White Rice",
     "Brown Rice",
@@ -98,4 +98,4 @@ const proteinOptions = {
   ],
 };
 
-export default proteinOptions;
+export default CarbsOptions;

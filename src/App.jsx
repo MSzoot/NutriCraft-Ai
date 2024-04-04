@@ -3,10 +3,10 @@ import Home from "./pages/Home.jsx";
 import Input from "./pages/Input.jsx";
 import Result from "./pages/Result.jsx";
 import Preferences from "./pages/preferences.jsx";
-import Answers from "./pages/Answers.jsx";
 import Header from "./components/Header.jsx";
 import Protein from "./pages/protein.jsx";
 import Carbs from "./pages/carbs.jsx";
+import Fats from "./pages/fats.jsx";
 // import { Layout } from "./general/Layout.jsx";
 
 export const App = () => {
@@ -20,7 +20,7 @@ export const App = () => {
           <Route path="/preferences" element={<Preferences />} />
           <Route path="/protein" element={<Protein />} />
           <Route path="/carbs" element={<Carbs />} />
-          <Route path="/answers" element={<Answers />} />
+          <Route path="/fats" element={<Fats />} />
           <Route path="/result" element={<Result />} />
         </Routes>
       </BrowserRouter>
