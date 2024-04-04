@@ -89,13 +89,12 @@ export default function Input() {
           <div className="border border-base-200 p-6">
             <form onSubmit={handleSubmit}>
               <label>
-                Age:
-                <p>{age}</p>
+                Age - {age}
                 <input
                   type="range"
                   min={0}
                   max="100"
-                  className="range"
+                  className="range mb-4"
                   value={age}
                   onChange={(e) => setAge(e.target.value)}
                 />
@@ -103,26 +102,24 @@ export default function Input() {
 
               <br />
               <label>
-                Weight:
-                <p>{weight}kg</p>
+                Weight - {weight}kg
                 <input
                   type="range"
                   min={0}
                   max="300"
-                  className="range"
+                  className="range mb-4"
                   value={weight}
                   onChange={(e) => setWeight(e.target.value)}
                 />
               </label>
               <br />
               <label>
-                Height:
-                <p>{height}cm</p>
+                Height - {height}cm
                 <input
                   type="range"
                   min={0}
                   max="240"
-                  className="range"
+                  className="range mb-4"
                   value={height}
                   onChange={(e) => setHeight(e.target.value)}
                 />
@@ -131,7 +128,7 @@ export default function Input() {
               <label>
                 Body type:
                 <select
-                  className="select select-sm mx-4 w-24"
+                  className="select select-sm mx-4 mb-2 w-24"
                   value={gender}
                   onChange={(e) => setGender(e.target.value)}
                 >
@@ -146,7 +143,7 @@ export default function Input() {
               <label>
                 Activity Level:
                 <select
-                  className="select select-sm mx-4 my-6"
+                  className="select select-sm mx-4 mb-2"
                   value={activityLevel}
                   onChange={(e) => setActivityLevel(e.target.value)}
                 >

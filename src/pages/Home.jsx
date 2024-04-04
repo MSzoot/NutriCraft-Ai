@@ -7,12 +7,14 @@ export default function Home() {
     navigate("/input");
   };
 
+  localStorage.clear();
+
   return (
     <div className="text-center">
-      <p className="p-6">
+      <h1 className="mb-20 py-6 text-center text-2xl">
         Fuel your desires, shape your body – Let AI tailor your tasty diet for
         today
-      </p>
+      </h1>
       <button className="btn-primary btn" onClick={handleGetStarted}>
         Get Started
       </button>

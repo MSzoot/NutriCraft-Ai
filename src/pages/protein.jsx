@@ -1,29 +1,43 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import proteinOptions from "../components/ProteinOptions";
 import { useNavigate } from "react-router-dom";
 
 export default function Protein() {
   const navigate = useNavigate();
   const dietType = localStorage.getItem("foodPreference");
-  const [selectedPreferences, setSelectedPreferences] = useState({});
+  const [selectedFood, setSelectedFood] = useState([]);
+
+  useEffect(() => {
+    // Load selected food from local storage when component mounts
+    const storedFood = JSON.parse(localStorage.getItem("selectedFood"));
+    if (storedFood) {
+      setSelectedFood(storedFood);
+    }
+  }, []);
 
   const handlePreferenceClick = (preference) => {
+    // Check if the preference is already selected
+    const isAlreadySelected = selectedFood.includes(preference);
+
     // Toggle the preference selection
-    setSelectedPreferences((prevPreferences) => {
-      if (prevPreferences[preference]) {
-        const { [preference]: removed, ...rest } = prevPreferences;
-        return rest;
-      } else {
-        return { ...prevPreferences, [preference]: true };
-      }
-    });
+    let updatedFood;
+    if (isAlreadySelected) {
+      updatedFood = selectedFood.filter((item) => item !== preference);
+    } else {
+      updatedFood = [...selectedFood, preference];
+    }
+
+    // Update the state with the new selected food
+    setSelectedFood(updatedFood);
+
+    // Save selected food to local storage
+    localStorage.setItem("selectedFood", JSON.stringify(updatedFood));
   };
 
   const handleNextPage = () => {
-    navigate("/protein");
+    navigate("/Carbs");
   };
 
-  console.log(selectedPreferences);
   return (
     <div>
       <h1 className="mb-10 py-6 text-center text-2xl">
@@ -34,7 +48,7 @@ export default function Protein() {
           <button
             key={index}
             className={`btn ${
-              selectedPreferences[preference] ? " btn-primary" : ""
+              selectedFood.includes(preference) ? "btn-primary" : ""
             }`}
             onClick={() => handlePreferenceClick(preference)}
           >
@@ -44,7 +58,7 @@ export default function Protein() {
       </div>
       <div className="mt-10 flex justify-center">
         <button className="btn-secondary btn" onClick={handleNextPage}>
-          Let me choose some carbs now !
+          Let me choose some carbs sources now!
         </button>
       </div>
     </div>
