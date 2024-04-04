@@ -6,10 +6,6 @@ export default function Input() {
 
   const handleNavigation = () => {
     navigate("/preferences");
-    //  const storedTDEE = localStorage.getItem("tdee");
-    //  const storedMacros = JSON.parse(localStorage.getItem("macros"));
-    // console.log(storedTDEE);
-    // console.log(storedMacros.toFixed(0));
   };
 
   const [age, setAge] = useState(0);
