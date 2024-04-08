@@ -1,3 +1,5 @@
+// import ChatGPTIntegration from "../components/gpt";
+
 export default function Result() {
   const tdee = localStorage.getItem("tdee");
   const macros = JSON.parse(localStorage.getItem("macros"));
@@ -25,3 +27,4 @@ export default function Result() {
     </div>
   );
 }
+// ("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");
