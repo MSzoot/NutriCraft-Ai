@@ -10,7 +10,6 @@ const proteinOptions = {
     "Flaxseeds",
     "Pumpkin",
     "Sunflower",
-    "Almond",
     "Coconut Oil",
     "Peanut",
     "Butter",

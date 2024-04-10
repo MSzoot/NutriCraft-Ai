@@ -90,7 +90,7 @@ export default function Input() {
           <div className="border border-base-200 p-6">
             <form onSubmit={handleSubmit}>
               <label>
-                Age - {age}
+                Age &nbsp; <strong>{age}</strong>
                 <input
                   type="range"
                   min={0}
@@ -103,7 +103,7 @@ export default function Input() {
 
               <br />
               <label>
-                Weight - {weight}kg
+                Weight &nbsp; <strong>{weight}kg</strong>
                 <input
                   type="range"
                   min={0}
@@ -115,7 +115,7 @@ export default function Input() {
               </label>
               <br />
               <label>
-                Height - {height}cm
+                Height &nbsp; <strong>{height}cm</strong>
                 <input
                   type="range"
                   min={0}
