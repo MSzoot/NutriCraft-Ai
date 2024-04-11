@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home.jsx";
 import Input from "./pages/Input.jsx";
 import Result from "./pages/Result.jsx";
-import Preferences from "./pages/preferences.jsx";
+import Preferences from "./pages/Preferences.jsx";
 import Header from "./components/Header.jsx";
 import Protein from "./pages/protein.jsx";
 import Carbs from "./pages/carbs.jsx";
