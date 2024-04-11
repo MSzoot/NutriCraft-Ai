@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const FoodPreferencePage = () => {
+const Preferences = () => {
   const navigate = useNavigate();
 
   const [selectedPreference, setSelectedPreference] = useState("");
@@ -57,4 +57,4 @@ const FoodPreferencePage = () => {
   );
 };
 
-export default FoodPreferencePage;
+export default Preferences;
