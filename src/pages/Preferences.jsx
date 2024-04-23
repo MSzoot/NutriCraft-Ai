@@ -17,7 +17,7 @@ const Preferences = () => {
 
   return (
     <div>
-      <h1 className="py-6 text-center text-2xl">Who you are ??</h1>
+      <h1 className="mb-10 py-6 text-center text-2xl">Who you are ??</h1>
       <div className="flex flex-col items-center justify-center gap-10">
         <button
           onClick={() => handlePreferenceSelection("meat")}

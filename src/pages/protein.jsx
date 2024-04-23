@@ -39,7 +39,7 @@ export default function Protein() {
   };
 
   return (
-    <div>
+    <div className="py-6">
       <h1 className="mb-10 py-6 text-center text-2xl">
         Choose protein sources you enjoy:
       </h1>

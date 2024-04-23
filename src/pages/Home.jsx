@@ -11,7 +11,7 @@ export default function Home() {
 
   return (
     <div className="text-center">
-      <h1 className="mb-20 py-6 text-center text-2xl">
+      <h1 className="mb-20 p-6 text-center text-2xl">
         Fuel your desires, shape your body – Let AI tailor your tasty diet for
         today
       </h1>

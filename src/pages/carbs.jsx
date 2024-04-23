@@ -32,7 +32,7 @@ export default function Carbs() {
   };
 
   return (
-    <div>
+    <div className="py-6">
       <h1 className="mb-10 py-6 text-center text-2xl">
         Choose carbohydrate sources you enjoy:
       </h1>
