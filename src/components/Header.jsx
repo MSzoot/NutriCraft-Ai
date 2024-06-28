@@ -8,7 +8,7 @@ export default function Header() {
   };
 
   return (
-    <div className="mb-10 mt-20 flex justify-center bg-base-100">
+    <div className="bg- mb-10 flex justify-center pt-20">
       <button
         className="text-center text-5xl font-bold text-primary"
         onClick={handleGoHome}

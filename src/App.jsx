@@ -7,12 +7,18 @@ import Header from "./components/Header.jsx";
 import Protein from "./pages/protein.jsx";
 import Carbs from "./pages/carbs.jsx";
 import Fats from "./pages/fats.jsx";
+import food from "./img/food.jpg";
 
 // import { Layout } from "./general/Layout.jsx";
 
 export const App = () => {
   return (
-    <div>
+    <div
+      className="min-h-screen bg-cover bg-center"
+      style={{
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${food})`,
+      }}
+    >
       <BrowserRouter>
         <Header />
         <Routes>

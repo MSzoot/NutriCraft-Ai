@@ -31,7 +31,6 @@ export default function Input() {
 
   const calculateTDEE = (age, gender, weight, height, activityLevel) => {
     let tdeeValue = 0;
-    // Calculate BMR based on age, body type, weight, and height
     let bmr;
     if (gender === "male") {
       bmr = 10 * weight + 6.25 * height - 5 * age + 5;
@@ -58,12 +57,12 @@ export default function Input() {
 
     if (target === "lose") {
       proteinRatio = 40;
-      carbsRatio = 30;
-      fatRatio = 30;
+      carbsRatio = 40;
+      fatRatio = 20;
     } else if (target === "gain") {
       proteinRatio = 30;
-      carbsRatio = 50;
-      fatRatio = 20;
+      carbsRatio = 55;
+      fatRatio = 25;
     } else {
       // maintain
       proteinRatio = 35;
@@ -87,7 +86,7 @@ export default function Input() {
       )}
       <div className="flex items-center justify-center">
         {tdee < 800 && (
-          <div className="border border-base-200 p-6">
+          <div className="border border-base-200 bg-black bg-opacity-30 p-6">
             <form onSubmit={handleSubmit}>
               <label>
                 Age &nbsp; <strong>{age}</strong>
@@ -184,7 +183,7 @@ export default function Input() {
           </div>
         )}
         {tdee >= 800 && (
-          <div className="border border-base-200 p-6 text-center">
+          <div className="border border-base-200 bg-black bg-opacity-30 p-6 text-center">
             <h2 className="my-12 text-xl">
               Your need {tdee.toFixed(0)}kcal every day !
             </h2>

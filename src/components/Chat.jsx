@@ -4,11 +4,64 @@ import axios from "axios";
 const ChatResponse = ({ response }) => {
   // Function to format the response for readability
   const formatResponse = (response) => {
-    return response.split("\n").map((line, index) => (
-      <p key={index} className="mb-1">
-        {line}
-      </p>
-    ));
+    const lines = response.split("\n");
+    const formattedLines = [];
+    let currentSection = null;
+
+    lines.forEach((line, index) => {
+      if (line.startsWith("**")) {
+        if (currentSection) {
+          formattedLines.push(
+            <div key={index} className="mb-4">
+              {currentSection}
+            </div>
+          );
+        }
+        currentSection = [
+          <h2 key={index} className="text-lg font-bold">
+            {line.replace(/\*\*/g, "")}
+          </h2>,
+        ];
+      } else if (line.startsWith("- ")) {
+        if (!currentSection) {
+          currentSection = [];
+        }
+        currentSection.push(<li key={index}>{line.replace("- ", "")}</li>);
+      } else if (line.startsWith("Total:")) {
+        if (currentSection) {
+          formattedLines.push(
+            <div key={index} className="mb-4">
+              {currentSection}
+            </div>
+          );
+          currentSection = null;
+        }
+        formattedLines.push(
+          <h2 key={index} className="mt-4 text-lg font-bold">
+            {line}
+          </h2>
+        );
+      } else {
+        if (!currentSection) {
+          currentSection = [];
+        }
+        currentSection.push(
+          <p key={index} className="mb-1">
+            {line}
+          </p>
+        );
+      }
+    });
+
+    if (currentSection) {
+      formattedLines.push(
+        <div key={lines.length} className="mb-4">
+          {currentSection}
+        </div>
+      );
+    }
+
+    return formattedLines;
   };
 
   // Format the response
@@ -25,7 +78,7 @@ const Chat = () => {
   const fat = macros.fat.toFixed(0);
   const foodOptions = localStorage.selectedFood;
 
-  const message = `Generate a personalized diet plan for one day, targeting approximately ${tdee} calories, with a focus on achieving ${proteins} grams of protein, ${carbs} grams of carbohydrates, and ${fat} grams of fat. Ensure the plan includes at least three meals but no more than five and is both nutritious and delicious. Incorporate a variety of foods, with an emphasis on the following ingredients: ${foodOptions}. Please optimize the plan for taste, simplicity, and adherence to dietary goals. Don't use oz use grams only.`;
+  const message = `Generate a personalized diet plan for one day, targeting approximately ${tdee} calories, with a focus on achieving ${proteins} grams of protein, ${carbs} grams of carbohydrates, and ${fat} grams of fat. Ensure the plan includes at least three meals but no more than five and is both nutritious and delicious. Incorporate a variety of foods, with an emphasis on the following ingredients: ${foodOptions}. Please optimize the plan for taste, simplicity, and adherence to dietary goals. Don't use oz use grams only. Make it not more than 800 characters. Give short preparing instructions`;
 
   const [response, setResponse] = useState(""); // Response state
   const [loading, setLoading] = useState(false); // Loading state
@@ -47,7 +100,7 @@ const Chat = () => {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer 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`,
+            Authorization: `Bearer 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`, // Ensure to replace this with your actual API key
           },
         }
       );

@@ -11,16 +11,7 @@ export default function Result() {
 
   return (
     <div>
-      <div className="p-6 text-center">
-        <h2 className="my-12 text-xl">Your diet plan for today:</h2>
-        <h2 className="my-12 text-xl">{tdee}kcal</h2>
-        <div>
-          <ul>
-            <li>Protein - {proteins}g</li>
-            <li>Carbs - {carbs}g</li>
-            <li>Fat - {fat}g</li>
-          </ul>
-        </div>
+      <div className="px-6 text-center">
         <Chat />
       </div>
     </div>
