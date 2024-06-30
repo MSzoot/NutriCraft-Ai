@@ -50,7 +50,7 @@ export default function Carbs() {
         ))}
       </div>
       <div className="mt-10 flex justify-center">
-        <button className="btn-secondary btn" onClick={handleNextPage}>
+        <button className="btn-success btn" onClick={handleNextPage}>
           Let me choose some fat sources now!
         </button>
       </div>

@@ -57,7 +57,7 @@ export default function Protein() {
         ))}
       </div>
       <div className="mt-10 flex justify-center">
-        <button className="btn-secondary btn" onClick={handleNextPage}>
+        <button className="btn-success btn" onClick={handleNextPage}>
           Let me choose some carbs sources now!
         </button>
       </div>

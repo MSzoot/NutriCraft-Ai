@@ -50,7 +50,7 @@ export default function Fats() {
         ))}
       </div>
       <div className="mt-10 flex justify-center">
-        <button className="btn-secondary btn" onClick={handleNextPage}>
+        <button className="btn-success btn" onClick={handleNextPage}>
           Get me to my diet for today !
         </button>
       </div>

@@ -48,7 +48,7 @@ const Preferences = () => {
       </div>
       <div className="mt-20 flex justify-center">
         {selectedPreference && (
-          <button className="btn-primary btn" onClick={handleNextPage}>
+          <button className="btn-success btn" onClick={handleNextPage}>
             Choose you food
           </button>
         )}
