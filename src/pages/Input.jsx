@@ -86,7 +86,7 @@ export default function Input() {
       )}
       <div className="flex items-center justify-center">
         {tdee < 800 && (
-          <div className="border border-base-200 bg-black bg-opacity-30 p-6">
+          <div className="border border-base-200 bg-black bg-opacity-50 p-6">
             <form onSubmit={handleSubmit}>
               <label>
                 Age &nbsp; <strong>{age}</strong>
@@ -183,7 +183,7 @@ export default function Input() {
           </div>
         )}
         {tdee >= 800 && (
-          <div className="border border-base-200 bg-black bg-opacity-30 p-6 text-center">
+          <div className="border border-base-200 bg-black bg-opacity-50 p-6 text-center">
             <h2 className="my-12 text-xl">
               Your need {tdee.toFixed(0)}kcal every day !
             </h2>
