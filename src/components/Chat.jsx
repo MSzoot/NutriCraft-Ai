@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+
+// this works on local server but .env has to be ignored by github and netlify delpoys from github. I've found workaround and  added custom variable on netlify to inject here before deploy.
 const apiKey = import.meta.env.VITE_API_KEY;
 
-console.log(apiKey);
 // Function to format the response for readability
 const ChatResponse = ({ response }) => {
   const formatResponse = (response) => {
@@ -86,7 +87,6 @@ const Chat = () => {
 
   return (
     <div className="mb-20">
-      {/* Button to show loading state */}
       {loading ? (
         <button
           type="button"
@@ -96,7 +96,7 @@ const Chat = () => {
           Processing...
         </button>
       ) : (
-        // Display formatted response
+        // if no loading then display formatted response
         <ChatResponse response={response} />
       )}
     </div>
