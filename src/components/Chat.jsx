@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+const apiKey = import.meta.env.VITE_API_KEY;
 
+console.log(apiKey);
 // Function to format the response for readability
 const ChatResponse = ({ response }) => {
   const formatResponse = (response) => {
@@ -60,7 +62,7 @@ const Chat = () => {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer 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`,
+            Authorization: `Bearer ${apiKey}`,
           },
         }
       );
