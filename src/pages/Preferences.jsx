@@ -6,6 +6,7 @@ const Preferences = () => {
 
   const [selectedPreference, setSelectedPreference] = useState("");
 
+  // set a new state and save this to local storage
   const handlePreferenceSelection = (preference) => {
     setSelectedPreference(preference);
     localStorage.setItem("foodPreference", preference);

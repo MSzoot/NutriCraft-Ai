@@ -9,8 +9,6 @@ import Carbs from "./pages/carbs.jsx";
 import Fats from "./pages/fats.jsx";
 import food from "./img/food.jpg";
 
-// import { Layout } from "./general/Layout.jsx";
-
 export const App = () => {
   return (
     <div

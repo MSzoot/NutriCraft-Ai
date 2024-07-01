@@ -4,31 +4,40 @@ import { useNavigate } from "react-router-dom";
 
 export default function Fats() {
   const navigate = useNavigate();
+
+  const handleNextPage = () => {
+    navigate("/Result");
+  };
+  //
+  //
+  //get information about preference from local stroage
   const dietType = localStorage.getItem("foodPreference");
   const [selectedFood, setSelectedFood] = useState([]);
-
+  //
+  //
+  // load food preferences from local storage , this prevents choices to disappear when the user goes back to do some changes
   useEffect(() => {
-    // Load selected food from local storage when component mounts
     const storedFood = JSON.parse(localStorage.getItem("selectedFood"));
     if (storedFood) {
       setSelectedFood(storedFood);
     }
   }, []);
-
+  //
+  //
+  // handle click on food button
   const handlePreferenceClick = (preference) => {
     // Toggle the preference selection
     setSelectedFood((prevSelectedFood) => {
-      const updatedFood = prevSelectedFood.includes(preference)
-        ? prevSelectedFood.filter((item) => item !== preference)
-        : [...prevSelectedFood, preference];
+      let updatedFood;
+      if (prevSelectedFood.includes(preference)) {
+        updatedFood = prevSelectedFood.filter((item) => item !== preference);
+      } else {
+        updatedFood = [...prevSelectedFood, preference];
+      }
       // Save selected food to local storage
       localStorage.setItem("selectedFood", JSON.stringify(updatedFood));
       return updatedFood;
     });
-  };
-
-  const handleNextPage = () => {
-    navigate("/Result");
   };
 
   return (

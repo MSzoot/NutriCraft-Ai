@@ -8,14 +8,16 @@ export default function Input() {
     navigate("/preferences");
   };
 
+  // states
   const [age, setAge] = useState(0);
-  const [gender, setGender] = useState("male");
   const [weight, setWeight] = useState(0);
   const [height, setHeight] = useState(0);
-  const [activityLevel, setActivityLevel] = useState("sedentary");
+  const [gender, setGender] = useState("male");
+  const [activityLevel, setActivityLevel] = useState("lightlyActive");
   const [target, setTarget] = useState("maintain");
   const [tdee, setTDEE] = useState(null);
 
+  // save data to local storge
   useEffect(() => {
     if (tdee) {
       localStorage.setItem("tdee", tdee.toFixed(0));
@@ -29,6 +31,7 @@ export default function Input() {
     setTDEE(tdeeValue);
   };
 
+  // Tdee calculating function
   const calculateTDEE = (age, gender, weight, height, activityLevel) => {
     let tdeeValue = 0;
     let bmr;
@@ -37,7 +40,6 @@ export default function Input() {
     } else {
       bmr = 10 * weight + 6.25 * height - 5 * age - 161;
     }
-    // Calculate TDEE based on activity level
     if (activityLevel === "sedentary") {
       tdeeValue = bmr * 1.2;
     } else if (activityLevel === "lightlyActive") {
@@ -89,7 +91,8 @@ export default function Input() {
           <div className="border border-base-200 bg-black bg-opacity-50 p-6">
             <form onSubmit={handleSubmit}>
               <label>
-                Age &nbsp; <strong>{age}</strong>
+                {/* &nbsp; prevents line separation*/}
+                Age &nbsp; <b>{age}</b>
                 <input
                   type="range"
                   min={0}
@@ -102,7 +105,7 @@ export default function Input() {
 
               <br />
               <label>
-                Weight &nbsp; <strong>{weight}kg</strong>
+                Weight &nbsp; <b>{weight}kg</b>
                 <input
                   type="range"
                   min={0}
@@ -114,7 +117,7 @@ export default function Input() {
               </label>
               <br />
               <label>
-                Height &nbsp; <strong>{height}cm</strong>
+                Height &nbsp; <b>{height}cm</b>
                 <input
                   type="range"
                   min={0}

@@ -1,76 +1,34 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+// Function to format the response for readability
 const ChatResponse = ({ response }) => {
-  // Function to format the response for readability
   const formatResponse = (response) => {
-    const lines = response.split("\n");
-    const formattedLines = [];
-    let currentSection = null;
+    const formattedResponse = response
+      .replace(/Breakfast:/g, '<h2 class="text-lg font-bold">Breakfast:</h2>')
+      .replace(/Lunch:/g, '<h2 class="text-lg font-bold">Lunch:</h2>')
+      .replace(/Dinner:/g, '<h2 class="text-lg font-bold">Dinner:</h2>')
+      .replace(/Snack:/g, '<h2 class="text-lg font-bold">Snack:</h2>')
+      .replace(
+        /Daily Total:/g,
+        '<h2 class="text-lg font-bold">Daily Total:</h2>'
+      )
+      .replace(/\n/g, "<br/>");
 
-    lines.forEach((line, index) => {
-      if (line.startsWith("**")) {
-        if (currentSection) {
-          formattedLines.push(
-            <div key={index} className="mb-4">
-              {currentSection}
-            </div>
-          );
-        }
-        currentSection = [
-          <h2 key={index} className="text-lg font-bold">
-            {line.replace(/\*\*/g, "")}
-          </h2>,
-        ];
-      } else if (line.startsWith("- ")) {
-        if (!currentSection) {
-          currentSection = [];
-        }
-        currentSection.push(<li key={index}>{line.replace("- ", "")}</li>);
-      } else if (line.startsWith("Total:")) {
-        if (currentSection) {
-          formattedLines.push(
-            <div key={index} className="mb-4">
-              {currentSection}
-            </div>
-          );
-          currentSection = null;
-        }
-        formattedLines.push(
-          <h2 key={index} className="mt-4 text-lg font-bold">
-            {line}
-          </h2>
-        );
-      } else {
-        if (!currentSection) {
-          currentSection = [];
-        }
-        currentSection.push(
-          <p key={index} className="mb-1">
-            {line}
-          </p>
-        );
-      }
-    });
-
-    if (currentSection) {
-      formattedLines.push(
-        <div key={lines.length} className="mb-4">
-          {currentSection}
-        </div>
-      );
-    }
-
-    return formattedLines;
+    // inject raw formated html  to dangerouslySetInnerHTML
+    return { __html: formattedResponse };
   };
 
-  // Format the response
-  const formattedResponse = formatResponse(response);
-
-  return <div className="mt-20">{formattedResponse}</div>;
+  return (
+    <div
+      className="mt-20 p-4 text-white"
+      dangerouslySetInnerHTML={formatResponse(response)}
+    />
+  );
 };
 
 const Chat = () => {
+  // get data from local storage
   const tdee = localStorage.getItem("tdee");
   const macros = JSON.parse(localStorage.getItem("macros"));
   const proteins = macros.protein.toFixed(0);
@@ -78,8 +36,10 @@ const Chat = () => {
   const fat = macros.fat.toFixed(0);
   const foodOptions = localStorage.selectedFood;
 
-  const message = `Generate a personalized diet plan for one day, targeting approximately ${tdee} calories, with a focus on achieving ${proteins} grams of protein, ${carbs} grams of carbohydrates, and ${fat} grams of fat. Ensure the plan includes at least three meals but no more than five and is both nutritious and delicious. Incorporate a variety of foods, with an emphasis on the following ingredients: ${foodOptions}. Please optimize the plan for taste, simplicity, and adherence to dietary goals. Don't use oz use grams only. Make it not more than 800 characters. Give short preparing instructions`;
+  // use data for chat gpt prompt
+  const message = `Generate a personalized diet plan for one day, targeting approximately ${tdee} calories, with a focus on achieving ${proteins} grams of protein, ${carbs} grams of carbohydrates, and ${fat} grams of fat. Ensure the plan includes at least three meals but no more than five and is both nutritious and delicious. Incorporate a variety of foods, with an emphasis on the following ingredients: ${foodOptions}. Don't use oz use grams only. Make the answer not longer than 800 characters. Give short preparing instructions. Write summary for daily total calories, protein carbs and fat.`;
 
+  // states + loading state for processing... button to show
   const [response, setResponse] = useState(""); // Response state
   const [loading, setLoading] = useState(false); // Loading state
   const [messageSent, setMessageSent] = useState(false); // Track if message has been sent
@@ -111,6 +71,7 @@ const Chat = () => {
       console.error("Error sending chat request:", error);
     } finally {
       setLoading(false); // Set loading to false after response is received
+
       setMessageSent(true); // Mark message as sent
     }
   };
@@ -122,7 +83,7 @@ const Chat = () => {
   }, [response]); // Trigger useEffect only when response changes
 
   return (
-    <div>
+    <div className="mb-20">
       {/* Button to show loading state */}
       {loading ? (
         <button

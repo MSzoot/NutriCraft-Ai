@@ -4,22 +4,32 @@ import { useNavigate } from "react-router-dom";
 
 export default function Protein() {
   const navigate = useNavigate();
+
+  const handleNextPage = () => {
+    navigate("/Carbs");
+  };
+  //
+  //
+  //get information about preference from local stroage
   const dietType = localStorage.getItem("foodPreference");
   const [selectedFood, setSelectedFood] = useState([]);
-
+  //
+  //
+  // load food preferences from local storage , this prevents choices to disappear when the user goes back to do some changes
   useEffect(() => {
-    // Load selected food from local storage when component mounts
     const storedFood = JSON.parse(localStorage.getItem("selectedFood"));
     if (storedFood) {
       setSelectedFood(storedFood);
     }
   }, []);
-
+  //
+  //
+  // hande click on food
   const handlePreferenceClick = (preference) => {
-    // Check if the preference is already selected
+    // check if the preference(food item) is already selected / it returns true of false
     const isAlreadySelected = selectedFood.includes(preference);
 
-    // Toggle the preference selection
+    // Toggle the preference selection , when is already selected remove it when clicked, if not selected add this to existing array
     let updatedFood;
     if (isAlreadySelected) {
       updatedFood = selectedFood.filter((item) => item !== preference);
@@ -32,10 +42,6 @@ export default function Protein() {
 
     // Save selected food to local storage
     localStorage.setItem("selectedFood", JSON.stringify(updatedFood));
-  };
-
-  const handleNextPage = () => {
-    navigate("/Carbs");
   };
 
   return (
