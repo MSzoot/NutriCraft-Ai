@@ -18,6 +18,7 @@ NutriCraft-Ai is a React application designed to provide users with a straightfo
 - **Axios:** HTTP client for making requests to the OpenAI API.
 - **OpenAI GPT-3.5:** AI model used to generate personalized meal plans based on user inputs.
 - **Local Storage:** Browser storage used to persist user data between sessions.
+- **Tailwind CSS:** Utility-first CSS framework for quickly building custom designs.
 
 ---
 
