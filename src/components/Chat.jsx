@@ -40,9 +40,9 @@ const Chat = () => {
   const message = `Generate a personalized diet plan for one day, targeting approximately ${tdee} calories, with a focus on achieving ${proteins} grams of protein, ${carbs} grams of carbohydrates, and ${fat} grams of fat. Ensure the plan includes at least three meals but no more than five and is both nutritious and delicious. Incorporate a variety of foods, with an emphasis on the following ingredients: ${foodOptions}. Don't use oz use grams only. Make the answer not longer than 800 characters. Give short preparing instructions. Write summary for daily total calories, protein carbs and fat.`;
 
   // states + loading state for processing... button to show
-  const [response, setResponse] = useState(""); // Response state
-  const [loading, setLoading] = useState(false); // Loading state
-  const [messageSent, setMessageSent] = useState(false); // Track if message has been sent
+  const [response, setResponse] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [messageSent, setMessageSent] = useState(false); // Track - message sent ?
 
   // Function to send message to OpenAI API
   const sendMessage = async () => {
@@ -60,7 +60,7 @@ const Chat = () => {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer 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`, // Ensure to replace this with your actual API key
+            Authorization: `Bearer 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`,
           },
         }
       );
@@ -80,7 +80,7 @@ const Chat = () => {
     if (!response && !loading && !messageSent) {
       sendMessage(); // Send message only if not sent already
     }
-  }, [response]); // Trigger useEffect only when response changes
+  }, [response]);
 
   return (
     <div className="mb-20">
