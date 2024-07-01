@@ -20,5 +20,6 @@ NutriCraft-Ai is a React application designed to provide users with a straightfo
 - **Local Storage:** Browser storage used to persist user data between sessions.
 - **Tailwind CSS:** Utility-first CSS framework for quickly building custom designs.
 
----
+
+EDIT : I have to keep this respository private for now as OpenAI automatically disables any API key when I make it public. Will look for workaround to it. 
 
