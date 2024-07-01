@@ -1,9 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-// eslint-disable-next-line no-undef
-const apiKey = process.env.REACT_APP_API_KEY;
-
 // Function to format the response for readability
 const ChatResponse = ({ response }) => {
   const formatResponse = (response) => {
@@ -63,7 +60,7 @@ const Chat = () => {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: apiKey,
+            Authorization: `Bearer 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`,
           },
         }
       );
